@@ -445,6 +445,10 @@ nav ul li.active:after{
 #students_table td select{
     font-family: OpenSans;
 }
+#students_table tr.focus{
+    border: 2px solid #E02222;
+    color: #E02222;
+}
 #finalize_button{
     border: 0;
     background: #000000;

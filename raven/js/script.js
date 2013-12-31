@@ -96,7 +96,7 @@
                     <td>' + data[i].students[j].student_number + '</td> \
                     <td>' + data[i].students[j].name + '</td> \
                     <td> \
-                        <select> \
+                        <select class="grade_select" id="' + data[i].students[j].student_number + '"> \
                             <option disabled="disabled" selected="selected">---</option> \
                             <option>1.00</option> \
                             <option>1.25</option> \
@@ -130,7 +130,8 @@
 
 
     root.onresize = function () {
-        var temp1 = document.getElementsByTagName('section');
+        var temp1 = document.getElementsByTagName('section'),
+            i;
         for (i in temp1) {
             if (i > -1 && temp1.hasOwnProperty(i)) {
                 temp1[i].style.height = root.innerHeight + 'px';
@@ -142,14 +143,35 @@
     root.onresize();
 
     document.getElementById('finalize_button').onclick = function (e) {
-        if(
+        var password,
+            i,
+            has_error = false,
+            grades = document.getElementsByClassName('grade_select');
+        
+        for (i = 0; i < grades.length; i += 1) {
+            if (grades[i].value === '---') {
+                document.getElementById(grades[i].id).parentNode.parentNode.className = 'focus';
+                has_error = true;
+            }
+            else {
+                document.getElementById(grades[i].id).parentNode.parentNode.className = '';
+            }
+        }
+        if (has_error) {
+            alert('Oops! Looks like you have some missed grades.');
+            return;
+        }
+        if (
             confirm('Are you sure you want to finalize?') &&
             confirm('Did you already double check the records?') &&
             confirm('Ok. This is the last time. Are you sure? Nobody wants a change of grade after this.')
-        ){
-            e.target.disabled = 'disabled';
-            e.target.innerHTML = 'Grade Sheet already finalized';
-            data[document.getElementsByClassName('active')[0].id].finalized = true;
+        ) {
+            password = prompt("To confirm, please type your password.");
+            if (password === 'ravengwapo') {
+                e.target.disabled = 'disabled';
+                e.target.innerHTML = 'Grade Sheet already finalized';
+                data[document.getElementsByClassName('active')[0].id].finalized = true;
+            }
         }
     };
     
