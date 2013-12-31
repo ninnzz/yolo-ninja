@@ -1,5 +1,6 @@
 (function(root){
-    var data = [
+    var user,
+        data = [
             {
                 course_code : 'CMSC 100',
                 section_name : 'X-3L',
@@ -160,7 +161,15 @@
         if (username.value === 'ravenjohn' && password.value === 'ravengwapo') {
             self.innerHTML = 'Login Success!';
             self.className = 'sign_in_success';
-            document.getElementById('instructor_span').innerHTML = 'Mr. Rommel V. Bulalacao';
+            user = {
+                first_name : 'Rommel',
+                middle_initial : 'V',
+                last_name : 'Bulalacao',
+                img_url : 'img/bulacs.png',
+                sex : 'M'
+            };
+            document.getElementById('profile_img').src = user.img_url;
+            document.getElementById('profile_img').alt = document.getElementById('profile_span').innerHTML = document.getElementById('instructor_span').innerHTML = (user.sex === 'M' ? 'Mr' : 'Ms') + '. ' + user.first_name + ' ' + user.middle_initial + '. ' + user.last_name;
             initList(data);
             initSheet(0);
             setTimeout(function () {
