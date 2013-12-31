@@ -1,0 +1,468 @@
+@font-face {
+	font-family: Nexa;
+	src: url(../font/nexa-light.woff);
+}
+@font-face {
+    font-family: OpenSans;
+    src: url(../font/OpenSans-Regular.woff);
+}
+@font-face {
+    font-family: OpenSansCondensed;
+    src: url(../font/OpenSans-CondLight.woff);
+}
+@font-face {
+    font-family: OpenSans;
+    src: url(../font/OpenSans-Bold.woff);
+    font-weight: bold;
+}
+
+/* Eric Meyer's Reset CSS v2.0 - http://cssreset.com */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
+
+.current-to-left{
+    animation: currentToLeft 0.8s forwards;
+    -o-animation: currentToLeft 0.8s forwards;
+    -moz-animation: currentToLeft 0.8s forwards;
+    -webkit-animation: currentToLeft 0.8s forwards;
+}
+.right-to-current{
+    animation: rightToCurrent 0.8s forwards;
+    -o-animation: rightToCurrent 0.8s forwards;
+    -moz-animation: rightToCurrent 0.8s forwards;
+    -webkit-animation: rightToCurrent 0.8s forwards;
+}
+.left-to-current{
+    animation: leftToCurrent 0.8s forwards;
+    -o-animation: leftToCurrent 0.8s forwards;
+    -moz-animation: leftToCurrent 0.8s forwards;
+    -webkit-animation: leftToCurrent 0.8s forwards;
+}
+.current-to-right{
+    animation: currentToRight 0.8s forwards;
+    -o-animation: currentToRight 0.8s forwards;
+    -moz-animation: currentToRight 0.8s forwards;
+    -webkit-animation: currentToRight 0.8s forwards;
+}
+@keyframes currentToLeft {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+@keyframes rightToCurrent {
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(0); }
+}
+@keyframes leftToCurrent {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(0); 
+    }
+}
+@keyframes currentToRight {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(100%);}
+}
+@-webkit-keyframes currentToLeft {
+  0%   { -webkit-transform: translateX(0); }
+  100% { -webkit-transform: translateX(-100%);}
+}
+@-webkit-keyframes rightToCurrent {
+  0%   { -webkit-transform: translateX(100%); }
+  100% { -webkit-transform: translateX(0); }
+}
+@-webkit-keyframes leftToCurrent {
+  0%   { -webkit-transform: translateX(-100%); }
+  100% { -webkit-transform: translateX(0); 
+    }
+}
+@-webkit-keyframes currentToRight {
+  0%   { -webkit-transform: translateX(0); }
+  100% { -webkit-transform: translateX(100%);}
+}
+@-moz-keyframes currentToLeft {
+  0%   { -moz-transform: translateX(0); }
+  100% { -moz-transform: translateX(-100%);}
+}
+@-moz-keyframes rightToCurrent {
+  0%   { -moz-transform: translateX(100%); }
+  100% { -moz-transform: translateX(0); 
+    }
+}
+@-moz-keyframes leftToCurrent {
+  0%   { -moz-transform: translateX(-100%); }
+  100% { -moz-transform: translateX(0); 
+    }
+}
+@-moz-keyframes currentToRight {
+  0%   { -moz-transform: translateX(0); }
+  100% { -moz-transform: translateX(100%);}
+}
+@-o-keyframes currentToLeft {
+  0%   { -o-transform: translateX(0); }
+  100% { -o-transform: translateX(-100%);}
+}
+@-o-keyframes rightToCurrent {
+  0%   { -o-transform: translateX(100%); }
+  100% { -o-transform: translateX(0); 
+    }
+}
+@-o-keyframes leftToCurrent {
+  0%   { -o-transform: translateX(-100%); }
+  100% { -o-transform: translateX(0); 
+    }
+}
+@-o-keyframes currentToRight {
+  0%   { -o-transform: translateX(0); }
+  100% { -o-transform: translateX(100%);}
+}
+
+
+.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+*{
+    font-family: OpenSansCondensed;
+    outline: 0;
+}
+body{
+    position: fixed;
+    overflow: hidden;
+}
+section{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #FFF;
+    text-align: center;
+    word-spacing: 0;
+}
+
+[data-position="right"]{
+    transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -o-transform: translateX(100%);
+}
+
+#front_section{
+    background: #3D3D3D;
+    text-align: center;
+}
+#login_form{
+    margin-top: 80px;
+}
+#login_form img{
+    margin-bottom: 60px;
+}
+#login_form button{
+    margin-top: 60px;
+    width: 244px;
+    color: #FFF;
+    font-family: OpenSans;
+    font-weight: bold;
+    font-size: 20px;
+    border: 0;
+    background: #2C1DA1;
+    box-shadow: -4px 4px #1A1063;
+    padding: 4px 0 8px;
+    cursor: pointer;
+}
+.sign_in_error {
+    animation: redShake 1s forwards; 
+    -webkit-animation: redShake 1s forwards; 
+    -o-animation: redShake 1s forwards; 
+    background: #e74c3c !important;
+    box-shadow: -4px 4px #c0392b !important;
+}
+.sign_in_success {
+    background: #2ecc71 !important;
+    box-shadow: -4px 4px #27ae60 !important;
+}
+@keyframes redShake {
+	0% {
+        transform: translate(2px, 1px) rotate(0deg);
+        background: #e74c3c;
+        box-shadow: -4px 4px #c0392b;
+    }
+	10% {
+        transform: translate(-1px, -2px) rotate(-1deg);
+    }
+	20% { transform: translate(-3px, 0px) rotate(1deg); }
+	30% { transform: translate(0px, 2px) rotate(0deg); }
+	40% { transform: translate(1px, -1px) rotate(1deg); }
+	50% { transform: translate(-1px, 2px) rotate(-1deg); }
+	60% { transform: translate(-3px, 1px) rotate(0deg); }
+	70% {
+        transform: translate(2px, 1px) rotate(-1deg);        
+        background: #e74c3c;
+        box-shadow: -4px 4px #c0392b;
+    }
+	80% { transform: translate(-1px, -1px) rotate(1deg); }
+	90% { transform: translate(2px, 2px) rotate(0deg); }
+	100%{
+        transform: translate(1px, -2px) rotate(-1deg);
+        background: #2C1DA1;
+        box-shadow: -4px 4px #1A1063;
+    }
+}
+@-webkit-keyframes redShake {
+	0% {
+        -webkit-transform: translate(2px, 1px) rotate(0deg);
+        background: #e74c3c;
+        box-shadow: -4px 4px #c0392b;
+    }
+	10% {
+        -webkit-transform: translate(-1px, -2px) rotate(-1deg);
+    }
+	20% { -webkit-transform: translate(-3px, 0px) rotate(1deg); }
+	30% { -webkit-transform: translate(0px, 2px) rotate(0deg); }
+	40% { -webkit-transform: translate(1px, -1px) rotate(1deg); }
+	50% { -webkit-transform: translate(-1px, 2px) rotate(-1deg); }
+	60% { -webkit-transform: translate(-3px, 1px) rotate(0deg); }
+	70% {
+        -webkit-transform: translate(2px, 1px) rotate(-1deg);        
+        background: #e74c3c;
+        box-shadow: -4px 4px #c0392b;
+    }
+	80% { -webkit-transform: translate(-1px, -1px) rotate(1deg); }
+	90% { -webkit-transform: translate(2px, 2px) rotate(0deg); }
+	100%{
+        -webkit-transform: translate(1px, -2px) rotate(-1deg);
+        background: #2C1DA1;
+        box-shadow: -4px 4px #1A1063;
+    }
+}
+@-moz-keyframes redShake {
+	0% {
+        -moz-transform: translate(2px, 1px) rotate(0deg);
+        background: #e74c3c;
+        box-shadow: -4px 4px #c0392b;
+    }
+	10% {
+        -moz-transform: translate(-1px, -2px) rotate(-1deg);
+    }
+	20% { -moz-transform: translate(-3px, 0px) rotate(1deg); }
+	30% { -moz-transform: translate(0px, 2px) rotate(0deg); }
+	40% { -moz-transform: translate(1px, -1px) rotate(1deg); }
+	50% { -moz-transform: translate(-1px, 2px) rotate(-1deg); }
+	60% { -moz-transform: translate(-3px, 1px) rotate(0deg); }
+	70% {
+        -moz-transform: translate(2px, 1px) rotate(-1deg);        
+        background: #e74c3c;
+        box-shadow: -4px 4px #c0392b;
+    }
+	80% { -moz-transform: translate(-1px, -1px) rotate(1deg); }
+	90% { -moz-transform: translate(2px, 2px) rotate(0deg); }
+	100%{
+        -moz-transform: translate(1px, -2px) rotate(-1deg);
+        background: #2C1DA1;
+        box-shadow: -4px 4px #1A1063;
+    }
+}
+@-o-keyframes redShake {
+	0% {
+        -o-transform: translate(2px, 1px) rotate(0deg);
+        background: #e74c3c;
+        box-shadow: -4px 4px #c0392b;
+    }
+	10% {
+        -o-transform: translate(-1px, -2px) rotate(-1deg);
+    }
+	20% { -o-transform: translate(-3px, 0px) rotate(1deg); }
+	30% { -o-transform: translate(0px, 2px) rotate(0deg); }
+	40% { -o-transform: translate(1px, -1px) rotate(1deg); }
+	50% { -o-transform: translate(-1px, 2px) rotate(-1deg); }
+	60% { -o-transform: translate(-3px, 1px) rotate(0deg); }
+	70% {
+        -o-transform: translate(2px, 1px) rotate(-1deg);        
+        background: #e74c3c;
+        box-shadow: -4px 4px #c0392b;
+    }
+	80% { -o-transform: translate(-1px, -1px) rotate(1deg); }
+	90% { -o-transform: translate(2px, 2px) rotate(0deg); }
+	100%{
+        -o-transform: translate(1px, -2px) rotate(-1deg);
+        background: #2C1DA1;
+        box-shadow: -4px 4px #1A1063;
+    }
+}
+#login_form input{
+    padding: 3px 0;
+    width: 244px;
+    font-size: 20px;
+    font-family: Nexa;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+    border: 0;
+    font-family: OpenSans;
+}
+
+.blood_text{
+    color: #E02222;
+}
+
+header{
+    width: 100;
+    clear: both;
+    height: 50px;
+    line-height: 50px;
+    background: #000000;
+    text-align: left;
+    text-indent: 45px;
+    color: #FFF;
+    font-family: OpenSansCondensed;
+    font-size: 24px;
+    position: relative;
+}
+#profile_div{
+    position: absolute;
+    top: 0;
+    right: 20px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 15px;
+    font-family: OpenSans;
+}
+#profile_div img{
+    vertical-align: middle;
+    margin-right: 10px;
+}
+#logout_button{
+    width: 10px;
+    height: 10px;
+    margin-left: 10px;
+    border: 0;
+    padding: 0;
+    border-bottom: 1px solid #FFFFFF;
+    border-right: 1px solid #FFFFFF;
+    background: transparent;
+    transform: rotate(45deg);
+    cursor: pointer;
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+nav{
+    height: 100%;
+    width: 285px;
+    background: #3D3D3D;
+    float: left;
+    color: #FFFFFF;
+    text-align: left;
+    line-height: 40px;
+    font-family: OpenSans;
+    font-size: 14px;
+}
+nav img{
+    padding: 0 10px;
+    vertical-align: middle;
+}
+nav ul{
+    list-style: disc inside;
+}
+nav ul li{
+    width: calc(100% - 55px);
+    height: 40px;
+    border-top: 1px solid #FFF;
+    line-height: 40px;
+    padding-left: 55px;
+    cursor: pointer;
+}
+nav ul li:hover, nav ul li.active{
+    border-top: 1px solid #E02222;
+    background: #E02222;
+    position: relative;
+}
+nav ul li.active:after{
+    position: absolute;
+    content: '';
+    right: -10px;
+    top: 8px;
+    width: 20px;
+    height: 20px;
+    background: #E6E6E6;
+    z-index: 15;
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+#sheet_container_div{
+    height: 100%;
+    width: calc(100% - 285px);
+    min-width: 950px;
+    float: left;
+    background: #E6E6E6;
+    overflow-y: auto;
+}
+#sheet_div{
+    padding: 16px 70px;
+    width: 781px;
+    height: 1160px;
+    background: #FFF;
+    margin: 50px auto;
+    box-shadow: 0 0 25px #D2D3D5;
+    position: relative;
+    font-family: OpenSans;
+    text-align: center;
+    line-height: 25px;
+}
+#sheet_div img{
+    position: absolute;
+    left: 70px;
+    top: 16px;
+}
+#sheet_div h5{
+    text-align: left;
+}
+#sheet_div h1{
+    text-align: center;
+    font-size: 28px;
+    line-height: 40px;
+}
+#students_table{
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+}
+#students_table tr:nth-child(even){
+    background: #FAFAFA;
+}
+#students_table td{
+    border: 1px solid #000;
+}
+#students_table td:first-child{
+   width: 150px;
+}
+#students_table td:nth-child(2){
+    text-align: left;
+    text-indent: 20px;
+}
+#students_table td:last-child{
+   width: 70px;
+}
+#students_table td select{
+    font-family: OpenSans;
+}
+#finalize_button{
+    border: 0;
+    background: #000000;
+    font-family: OpenSans;
+    font-weight: bold;
+    font-size: 20px;
+    color: #FFF;
+    padding: 2px 20px;
+    cursor: pointer;
+}
+#finalize_button:hover{
+    background: #E02222;
+}
+#finalize_button:disabled{
+    background: none;
+    color: #E02222;
+    cursor: inherit;
+}

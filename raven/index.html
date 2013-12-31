@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, user-scalable=no" />
+        <title>Online Grade Sheet</title>
+        <link rel="shortcut icon" href="favicon.png" />
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+
+    <body>
+
+        <section id="front_section" data-position="current">
+            <form action="#" method="POST" id="login_form" onsubmit="return false;">
+                <input type="text" placeholder="Username" id="username_input" required="required" value="ravenjohn" autofocus="true"/><br />
+                <input type="password" placeholder="Password" id="password_input" required="required" value="ravengwapo"/><br />
+                <button id="sign_in_button">SIGN IN</button>
+            </form>
+        </section>
+
+        <section id="main_section" data-position="right">
+            <header>
+                Online <span class="blood_text">GradeSheet</span>
+                <div id="profile_div">
+                    <span class="helper"></span>
+                    <img src="img/bulacs.png" width="34" height="34" alt="Mr. Rommel Bulalacao"/>
+                    Rommel Bulalacao
+                    <button id="logout_button" title="Logout"></button>
+                </div>
+            </header>
+            <nav>
+                <img src="img/classes_icon.png" width="30" height="30" alt="" />Your Classes
+                <ul id="classes_list"></ul>
+            </nav>
+            <div id="sheet_container_div">
+                <div id="sheet_div">
+                    <img src="img/uplb_logo.png" width="92" height="83" alt="UPLB Logo"/>
+                    <h1>
+                        University Of The Philippines Los Baños
+                        <br />
+                        Official Grade Sheet
+                    </h1>
+                    <br />
+                    <h5>
+                    Class: <span id="class_span"></span><br />
+                    Time: <span id="time_span"></span><br />
+                    College: <span id="col_span"></span><br />
+                    Department: <span id="dept_span"></span><br />
+                    Instructor: <span id="instructor_span"></span><br />
+                    </h5>
+                    <br />
+                    <table id="students_table"></table>
+                    <br />
+                    <button id="finalize_button">FINALIZE</button>
+                </div>
+            </div>
+        </section>
+
+        <script type="text/javascript" src="js/script.js"></script>
+
+    </body>
+
+</html>
