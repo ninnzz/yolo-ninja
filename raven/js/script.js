@@ -1,5 +1,6 @@
 (function(root){
     var user,
+        currentClassesIndex,
         data = [
             {
                 course_code : 'CMSC 100',
@@ -62,7 +63,6 @@
                 ]
             }
         ],
-        i,
         initList = function (d) {
             var i,
                 e = document.getElementById('classes_list');
@@ -81,41 +81,44 @@
             var table = document.getElementById('students_table'),
                 button = document.getElementById('finalize_button'),
                 body = '',
+                grades,
                 temp,
                 j;
             (temp = document.getElementsByClassName('active')[0]) && (temp.className = '');
-            (!e) && (e = document.getElementById(i));
+            !e && (e = document.getElementById(i));
             e.className = 'active';
             document.getElementById('class_span').innerHTML = data[i].course_code + ' ' + data[i].section_name;
             document.getElementById('time_span').innerHTML = data[i].day + ' ' + data[i].time;
             document.getElementById('col_span').innerHTML = data[i].college;
             document.getElementById('dept_span').innerHTML = data[i].department;
             for (j = 0; j < data[i].students.length; j += 1) {
-                body +=
-                '<tr>   \
+                body += '<tr>   \
                     <td>' + data[i].students[j].student_number + '</td> \
                     <td>' + data[i].students[j].name + '</td> \
-                    <td> \
-                        <select class="grade_select" id="' + data[i].students[j].student_number + '"> \
-                            <option disabled="disabled" selected="selected">---</option> \
-                            <option>1.00</option> \
-                            <option>1.25</option> \
-                            <option>1.50</option> \
-                            <option>1.75</option> \
-                            <option>2.00</option> \
-                            <option>2.25</option> \
-                            <option>2.50</option> \
-                            <option>2.75</option> \
-                            <option>3.00</option> \
-                            <option>4.00</option> \
-                            <option>5.00</option> \
-                            <option>INC</option> \
-                            <option>DRP</option> \
-                            <option>U</option> \
-                            <option>S</option> \
-                        </select> \
-                    </td> \
-                </tr>';
+                    <td>';
+                if (data[i].students[j].grade && data[i].finalized) {
+                    body += data[i].students[j].grade;
+                } else {
+                    body += '<select class="grade_select" id="' + data[i].students[j].student_number + '"> \
+                                <option disabled="disabled" selected="selected">---</option> \
+                                <option>1.00</option> \
+                                <option>1.25</option> \
+                                <option>1.50</option> \
+                                <option>1.75</option> \
+                                <option>2.00</option> \
+                                <option>2.25</option> \
+                                <option>2.50</option> \
+                                <option>2.75</option> \
+                                <option>3.00</option> \
+                                <option>4.00</option> \
+                                <option>5.00</option> \
+                                <option>INC</option> \
+                                <option>DRP</option> \
+                                <option>U</option> \
+                                <option>S</option> \
+                            </select>'
+                }
+                body += '</td></tr>';
             }
             table.innerHTML = body;
             if (data[i].finalized) {
@@ -126,51 +129,65 @@
                 button.disabled = '';
                 button.innerHTML = 'FINALIZE';
             }
+            grades = document.getElementsByClassName('grade_select');
+            for (j = 0; j < grades.length; j += 1) {
+                grades[j].onchange = function (e) {
+                    e.target.parentNode.parentNode.className = '';
+                };
+            }
+            currentClassesIndex = i;
         };
 
 
     root.onresize = function () {
         var temp1 = document.getElementsByTagName('section'),
             i;
-        for (i in temp1) {
-            if (i > -1 && temp1.hasOwnProperty(i)) {
-                temp1[i].style.height = root.innerHeight + 'px';
-                temp1[i].style.width = root.innerWidth + 'px';
-            }
+        for (i = 0; i < temp1.length; i += 1) {
+            temp1[i].style.height = root.innerHeight + 'px';
+            temp1[i].style.width = root.innerWidth + 'px';
         }
-        document.getElementById('sheet_container_div').style.width = root.innerWidth - '285' + 'px';
+        document.getElementById('sheet_container_div').style.width = root.innerWidth - '205' + 'px';
     };
     root.onresize();
 
     document.getElementById('finalize_button').onclick = function (e) {
-        var password,
-            i,
+        var grades = document.getElementsByClassName('grade_select'),
             has_error = false,
-            grades = document.getElementsByClassName('grade_select');
-        
+            payload = [],
+            temp1,
+            i;
+
         for (i = 0; i < grades.length; i += 1) {
+            temp1 = document.getElementById(grades[i].id).parentNode.parentNode;
             if (grades[i].value === '---') {
-                document.getElementById(grades[i].id).parentNode.parentNode.className = 'focus';
+                temp1.className = 'focus';
                 has_error = true;
-            }
-            else {
-                document.getElementById(grades[i].id).parentNode.parentNode.className = '';
+            } else {
+                data[currentClassesIndex].students[i].grade = grades[i].value;
+                temp1.className = '';
+                payload.push({student_number : grades[i].id, grade : grades[i].value});
             }
         }
         if (has_error) {
             alert('Oops! Looks like you have some missed grades.');
-            return;
-        }
-        if (
+        } else if (
             confirm('Are you sure you want to finalize?') &&
             confirm('Did you already double check the records?') &&
-            confirm('Ok. This is the last time. Are you sure? Nobody wants a change of grade after this.')
+            confirm('Ok. This is the last time. Nobody wants a change of grade after this. Are you 100% sure?')
         ) {
-            password = prompt("To confirm, please type your password.");
-            if (password === 'ravengwapo') {
-                e.target.disabled = 'disabled';
-                e.target.innerHTML = 'Grade Sheet already finalized';
+            temp1 = prompt("To confirm, please type your password.");
+            // send temp1 to server
+            if (temp1 === 'ravengwapo') {
+
+                // send payload to server
+
+                (e = e.target).disabled = 'disabled';
+                e.innerHTML = 'Grade Sheet already finalized';
                 data[document.getElementsByClassName('active')[0].id].finalized = true;
+
+                initSheet(currentClassesIndex);
+            } else {
+                alert('Eeeenk! Wrong password');
             }
         }
     };
@@ -180,9 +197,10 @@
             username = document.getElementById('username_input'),
             password = document.getElementById('password_input');
         password.disabled = username.disabled = 'disabled';
+
+        // send username password to server
+
         if (username.value === 'ravenjohn' && password.value === 'ravengwapo') {
-            self.innerHTML = 'Login Success!';
-            self.className = 'sign_in_success';
             user = {
                 first_name : 'Rommel',
                 middle_initial : 'V',
@@ -190,6 +208,8 @@
                 img_url : 'img/bulacs.png',
                 sex : 'M'
             };
+            self.innerHTML = 'Login Success!';
+            self.className = 'sign_in_success';
             document.getElementById('profile_img').src = user.img_url;
             document.getElementById('profile_img').alt = document.getElementById('profile_span').innerHTML = document.getElementById('instructor_span').innerHTML = (user.sex === 'M' ? 'Mr' : 'Ms') + '. ' + user.first_name + ' ' + user.middle_initial + '. ' + user.last_name;
             initList(data);

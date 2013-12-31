@@ -345,7 +345,7 @@ header{
 }
 nav{
     height: 100%;
-    width: 285px;
+    width: 205px;
     background: #3D3D3D;
     float: left;
     color: #FFFFFF;
@@ -362,14 +362,14 @@ nav ul{
     list-style: disc inside;
 }
 nav ul li{
-    width: calc(100% - 55px);
+    width: calc(100% - 15px);
     height: 40px;
     border-top: 1px solid #FFF;
     line-height: 40px;
-    padding-left: 55px;
+    padding-left: 15px;
     cursor: pointer;
 }
-nav ul li:hover, nav ul li.active{
+nav ul li.active{
     border-top: 1px solid #E02222;
     background: #E02222;
     position: relative;
@@ -390,15 +390,14 @@ nav ul li.active:after{
 }
 #sheet_container_div{
     height: 100%;
-    width: calc(100% - 285px);
-    min-width: 950px;
+    width: calc(100% - 205px);
     float: left;
     background: #E6E6E6;
-    overflow-y: auto;
+    overflow: auto;
 }
 #sheet_div{
-    padding: 16px 70px;
-    width: 781px;
+    padding: 16px 40px;
+    width: 731px;
     height: 1160px;
     background: #FFF;
     margin: 50px auto;
@@ -410,7 +409,7 @@ nav ul li.active:after{
 }
 #sheet_div img{
     position: absolute;
-    left: 70px;
+    left: 40px;
     top: 16px;
 }
 #sheet_div h5{
@@ -446,8 +445,8 @@ nav ul li.active:after{
     font-family: OpenSans;
 }
 #students_table tr.focus{
-    border: 2px solid #E02222;
-    color: #E02222;
+    background: #E02222;
+    color: #FFF;
 }
 #finalize_button{
     border: 0;
