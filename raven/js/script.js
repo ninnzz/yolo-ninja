@@ -64,8 +64,8 @@
             }
         ],
         initList = function (d) {
-            var i,
-                e = document.getElementById('classes_list');
+            var e = document.getElementById('classes_list'),
+                i;
             e.innerHTML = '';
             for (i = 0; i < d.length; i += 1) {
                 e.innerHTML += '<li class="class_item" id="' + i + '">' + d[i].course_code + ' ' + d[i].section_name + '</li>';
